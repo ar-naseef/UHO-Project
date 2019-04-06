@@ -15,8 +15,8 @@ export default class puzzleGrid extends Component {
 			gridHeightPx: 750,
 			gridWidth: 3,
 			gridHeight: 4,
-			image: 'http://localhost:8080/5.png',
-			// image: photo1,
+			image: 'http://localhost:8080/1.png',
+			selectedImage: 1,
 			correctPixelCombination: null,
 			shuffledPixels: null
 		}
@@ -91,6 +91,21 @@ export default class puzzleGrid extends Component {
 		}
 	}
 
+	setPuzzleImage = (id) => {
+		const images = [
+			'http://localhost:8080/1.png',
+			'http://localhost:8080/2.png',
+			'http://localhost:8080/3.png',
+			'http://localhost:8080/4.png'
+		]
+
+		this.setState({
+			selectedImage: id,
+			image: images[id-1]
+		}, () => {
+			this.setShuffledPixels();
+		})
+	}
 
   render() {
 
@@ -116,6 +131,27 @@ export default class puzzleGrid extends Component {
 			return pixels;
 		}
 
+		const getImageThubms = () => {
+			const images = [
+				'http://localhost:8080/1.png',
+				'http://localhost:8080/2.png',
+				'http://localhost:8080/3.png',
+				'http://localhost:8080/4.png'
+			]
+
+			return images.map((img, i) => {
+				if (this.state.selectedImage !== i+1) {
+					return (
+						<figure className="otherPuzzle" onClick={(e) => {
+							this.setPuzzleImage(i+1);
+						}}>
+							<img src={img} alt={i+1} />
+						</figure>
+					)
+				}
+			})
+		}
+
     return (
       <div className="columns is-mobile">
 				{/* <button onClick={(e) => {
@@ -136,17 +172,7 @@ export default class puzzleGrid extends Component {
 				</div>
 
 				<div className="column otherPuzzles">
-					<figure className="image otherPuzzle">
-						<img alt="pic1" src={`${this.state.image}`}/>
-					</figure>
-
-					<figure className="image otherPuzzle">
-						<img alt="pic2" src={`${this.state.image}`}/>
-					</figure>
-					
-					<figure className="image otherPuzzle">
-						<img alt="pic3" src={`${this.state.image}`}/>
-					</figure>
+					{getImageThubms()}
 				</div>
 
 

@@ -8,16 +8,23 @@
 }
 
 .gridPixel {
-    position: absolute;
-    text-align: right;
-    color: white;
+    position: absolute;    
     border: 1px solid #fff;
     transition: all 0.1s;
     cursor: pointer;
 }
 
+.pixelIndex {
+    color: black;
+    font-weight: 800;
+    font-size: 1.5em;
+    float: right;
+    padding-right: 10px;
+}
+
 .leftPanel {
-    width: 33%;
+    width: 33vw;
+    /* height: 100vh; */
 }
 
 .logoImg {
@@ -36,26 +43,28 @@
     width: 85%;
     color: white;
     background-color: #008DC9;
+    overflow: hidden;
 }
 
 .tickMark {
-    width: 40%;
-    height: 70px;
+    width: 15vw;
+    height: 7vh;
     background-color: #008DC9;
     border-radius: 35px;
     margin: 30px auto;
 }
 
 .timerDiv {
-    width: 60%;
+    /* width: ; */
     text-align: center;
     margin: 30px auto;
-    font-size: 5em;
+    font-size: 6vw;
     color: #86C568;
     font-weight: 500;
 }
 
 .rightPanel {
+    width: 66vw;
     background-color: #F5F6F7;
     border-radius: 10px;
     height: 95vh;
@@ -79,6 +88,7 @@
 }
 
 .winRightPanel {
+    width: 66vw;
     background-color: #008DC9;
     border-radius: 10px;
     position: relative;

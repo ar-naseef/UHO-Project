@@ -30,7 +30,9 @@ export default class puzzlePixel extends Component {
           y: this.state.positionY
         }, this.props.position)
       }}>
-        Pixel {this.props.index}
+        <span className="pixelIndex">
+          {(this.props.gridWidth*this.props.gridHeight === this.props.index+1 ? "" : this.props.index+1)}
+        </span>
       </div>
     )
   }
