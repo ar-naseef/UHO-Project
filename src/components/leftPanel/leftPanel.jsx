@@ -1,33 +1,24 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import logo from '../../assets/who-logo.png';
 
-export default class leftPanel extends React.Component {
+class leftPanel extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			timerSec: 90
-		}
-	}
-
-	componentDidMount() {
-		this.startTimer();
-	}
-
-	startTimer = () => {
-		this.setState({
-			timerSec: 90
-		}, () => {
-			setInterval(() => {
-				this.setState({
-					timerSec: this.state.timerSec-1
-				})
-			}, 999);
-		})
-	}
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		timerSec: 90
+	// 	}
+	// }
 
   render() {
+		if(this.props.timerSec <= 0) {
+			this.props.history.push({
+				pathname: '/timeout'
+			})
+		}
+
 		return (
 			<div className="leftPanel">
 				<div className="logoImg">
@@ -38,11 +29,7 @@ export default class leftPanel extends React.Component {
 				
 				<div className="leftText">
 					<p>
-						Bringing remember for supplied her why was confined. Midd leton nsive belie ving add.
-					</p>
-					<br />
-					<p>
-						Wea ther adapt ed prepare oh is calling. These wrong of he which there smile to my front.
+					A Health System with strong and quality Primary Health Care delivers better health outcomes, is cost-efficient and ensures care for all.  Primary Health Care is essential to achieve health-related Sustainable Development Goals (SDGs) and Universal Health Coverage.
 					</p>
 				</div>
 	
@@ -56,7 +43,7 @@ export default class leftPanel extends React.Component {
 	
 				{this.props.screen === "game" ? (
 					<div className="timerDiv">
-						{`0${Math.floor(this.state.timerSec/60)}`}:{this.state.timerSec%60 < 10 ? `0${this.state.timerSec%60}` : this.state.timerSec%60}
+						{`0${Math.floor(this.props.timerSec/60)}`}:{this.props.timerSec%60 < 10 ? `0${this.props.timerSec%60}` : this.props.timerSec%60}
 					</div>
 				) : (
 					<div></div>
@@ -65,3 +52,5 @@ export default class leftPanel extends React.Component {
 		)
 	}
 }
+
+export default withRouter(leftPanel);

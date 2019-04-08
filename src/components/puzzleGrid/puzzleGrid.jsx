@@ -3,22 +3,23 @@ import React, { Component } from 'react';
 
 // components
 import Pixel from '../puzzlePixel/puzzlePixel';
+import { withRouter } from 'react-router-dom';
 
 // import photo1 from '../../assets/1.png';
 
-export default class puzzleGrid extends Component {
+class puzzleGrid extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			gridWidthPx: 550,
-			gridHeightPx: 750,
+			gridWidthPx: 35,
+			gridHeightPx: 70,
 			gridWidth: 3,
 			gridHeight: 4,
 			image: 'http://localhost:8080/1.png',
 			selectedImage: 1,
 			correctPixelCombination: null,
-			shuffledPixels: null
+			shuffledPixels: null,
 		}
 	}
 	
@@ -29,6 +30,10 @@ export default class puzzleGrid extends Component {
 			shuffledPixels: numbersArr
 		});
 		this.setShuffledPixels();
+	}
+
+	componentDidMount() {
+		this.props.startTimer();
 	}
 
 	setShuffledPixels = () => {
@@ -85,6 +90,11 @@ export default class puzzleGrid extends Component {
 			}, () => {
 				if (this.checkWin()) {
 					console.log("you win");
+					setTimeout(() => {
+						this.props.history.push({
+							pathname: '/puzzle/end'
+						})
+					}, 750);
 					// alert("you win")
 				}
 			})
@@ -92,11 +102,14 @@ export default class puzzleGrid extends Component {
 	}
 
 	setPuzzleImage = (id) => {
+
+		this.props.startTimer();
 		const images = [
 			'http://localhost:8080/1.png',
 			'http://localhost:8080/2.png',
 			'http://localhost:8080/3.png',
-			'http://localhost:8080/4.png'
+			'http://localhost:8080/4.png',
+			'http://localhost:8080/5.png'
 		]
 
 		this.setState({
@@ -136,13 +149,14 @@ export default class puzzleGrid extends Component {
 				'http://localhost:8080/1.png',
 				'http://localhost:8080/2.png',
 				'http://localhost:8080/3.png',
-				'http://localhost:8080/4.png'
+				'http://localhost:8080/4.png',
+				'http://localhost:8080/5.png'
 			]
 
 			return images.map((img, i) => {
 				if (this.state.selectedImage !== i+1) {
 					return (
-						<figure className="otherPuzzle" onClick={(e) => {
+						<figure key={i} className="otherPuzzle" onClick={(e) => {
 							this.setPuzzleImage(i+1);
 						}}>
 							<img src={img} alt={i+1} />
@@ -164,8 +178,8 @@ export default class puzzleGrid extends Component {
 					</div>
 
 					<div className="puzzleGrid" style={{
-						width: `${this.state.gridWidthPx}px`,
-						height: `${this.state.gridHeightPx}px`
+						width: `${this.state.gridWidthPx}vw`,
+						height: `${this.state.gridHeightPx}vh`
 					}}>
 						{createGrid()}
 					</div>
@@ -174,9 +188,9 @@ export default class puzzleGrid extends Component {
 				<div className="column otherPuzzles">
 					{getImageThubms()}
 				</div>
-
-
 			</div>
     )
   }
 }
+
+export default withRouter(puzzleGrid);

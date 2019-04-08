@@ -4,7 +4,7 @@ import LeftPanel from '../leftPanel/leftPanel';
 
 export default function winScreen(props) {
   return (
-    <div className="columns is-mobile">
+    <div className="columns is-mobile winScreen">
       <LeftPanel className="column" screen="win" />
 			<div className="column winRightPanel">
 				{props.win === "puzzle" ? (
@@ -34,7 +34,7 @@ export default function winScreen(props) {
 				)}
 
 				<div className="bottomButton">
-					CONTINUE
+					<a className="continueBtn" href="/">CONTINUE</a>
 				</div>
 			</div>
     </div>

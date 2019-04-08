@@ -17,13 +17,13 @@ export default class puzzlePixel extends Component {
   render() {
     return (
       <div className="gridPixel" style={{
-        width: `${this.state.pixelWidth}px`,
-        height: `${this.state.pixelHeight}px`,
-        left: `${((this.props.position) % this.props.gridWidth) * this.state.pixelWidth}px`,
-        top: `${(Math.floor((this.props.position) / this.props.gridWidth)) * this.state.pixelHeight}px`,
+        width: `${this.state.pixelWidth}vw`,
+        height: `${this.state.pixelHeight}vh`,
+        left: `${((this.props.position) % this.props.gridWidth) * this.state.pixelWidth}vw`,
+        top: `${(Math.floor((this.props.position) / this.props.gridWidth)) * this.state.pixelHeight}vh`,
         backgroundImage: this.state.isEmpty ? "" : `url(${this.props.image})`,
-        backgroundSize: `${this.props.gridWidthPx}px ${this.props.gridHeightPx}px`,
-        backgroundPosition: `-${this.state.positionX * this.state.pixelWidth}px -${this.state.positionY * this.state.pixelHeight}px`
+        backgroundSize: `${this.props.gridWidthPx}vw ${this.props.gridHeightPx}vh`,
+        backgroundPosition: `-${this.state.positionX * this.state.pixelWidth}vw -${this.state.positionY * this.state.pixelHeight}vh`
       }} onClick={(e) => {
         this.props.onClickPixel(this.props.index, {
           x: this.state.positionX,
