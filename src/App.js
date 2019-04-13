@@ -12,6 +12,7 @@ import QuizParent from './components/quizParent/quizParent';
 import WinScreen from './components/winScreen/winScreen';
 import HomeScreen from './components/homeScreen/homeScreen';
 import TimeOut from './components/timeOut/timeOut';
+import Thanks from './components/thanks/thanks';
 
 class App extends Component {
 
@@ -25,12 +26,11 @@ class App extends Component {
     this.timeOut = null
   }
 
-  startTimer = () => {
+  startTimer = (t=90) => {
 
     clearInterval(this.timeOut);
-
 		this.setState({
-			timerSec: 90
+			timerSec: t
 		}, () => {
 			this.timeOut = setInterval(() => {
 				this.setState({
@@ -59,14 +59,7 @@ class App extends Component {
           <Route path="/puzzle/end" exact render={() => <WinScreen win="puzzle" message="Puzzle Completed"/>} />
           <Route path="/quiz/end" exact render={() => <WinScreen win="quiz" message="congratulations" score={this.state.correctAnswers} />} />
           <Route path="/timeout" exact render={() => <TimeOut message="Times up!" />} />
-          {/* <WinScreen 
-            win="quiz"
-            message="congratulation"
-            score="7"
-          /> */}
-          {/* <QuizParent /> */}
-          {/* <PuzzleParent /> */}
-          {/* <HomeScreen /> */}
+          <Route path="/thanks" render={() => <Thanks />} exact />
         </div>
       </BrowserRouter>
     );

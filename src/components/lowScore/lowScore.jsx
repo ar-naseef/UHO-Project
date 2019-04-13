@@ -6,7 +6,7 @@ import bg from '../../assets/background1.png';
 import puzzleEnd from '../../assets/puzzle-complete.png';
 import quizEnd from '../../assets/quiz-complete.png';
 
-export default function winScreen(props) {
+export default function lowScoreScreen(props) {
   return (
     <div className="columns is-mobile winScreen">
       <LeftPanel className="column" screen="win" />
@@ -29,10 +29,10 @@ export default function winScreen(props) {
 				) : (
 					<div>
 						<div className="winMessage">
-							{props.score>3 ? props.message : ""}
+							{props.message}
 						</div>
 
-						<div className={`winScore ${props.score > 3 ? "" : "redFont"}`}>
+						<div className="winScore">
 							{props.score}/10
 						</div>
 

@@ -55,7 +55,7 @@ class quizScreen extends Component {
 							pathname: '/quiz/end'
 						})
 					}
-				}, 1000)
+				}, 3000)
 			})
 		}
 	}
@@ -96,7 +96,7 @@ class quizScreen extends Component {
 				</div>
 
 				<div className="explanation">
-					{this.state.currentQuestion.explanation}
+					{this.state.answered ? this.state.currentQuestion.explanation : ""}
 				</div>
       </div>
     )

@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 // components
 import Pixel from '../puzzlePixel/puzzlePixel';
 import { withRouter } from 'react-router-dom';
+const assetBaseUrl = "https://s3.ap-south-1.amazonaws.com/who-assets";
+const timer = 60;
 
 // import photo1 from '../../assets/1.png';
 
@@ -16,7 +18,7 @@ class puzzleGrid extends Component {
 			gridHeightPx: 70,
 			gridWidth: 3,
 			gridHeight: 4,
-			image: 'http://localhost:8080/1.png',
+			image: `${assetBaseUrl}/1.png`,
 			selectedImage: 1,
 			correctPixelCombination: null,
 			shuffledPixels: null,
@@ -33,7 +35,7 @@ class puzzleGrid extends Component {
 	}
 
 	componentDidMount() {
-		this.props.startTimer();
+		this.props.startTimer(timer);
 	}
 
 	setShuffledPixels = () => {
@@ -54,7 +56,7 @@ class puzzleGrid extends Component {
 	checkWin = () => {
 
 		for(let i=0; i<this.state.correctPixelCombination.length; i++) {
-			console.log(this.state.correctPixelCombination[i], this.state.shuffledPixels[i]);
+			// console.log(this.state.correctPixelCombination[i], this.state.shuffledPixels[i]);
 			if ((this.state.correctPixelCombination[i] !== this.state.shuffledPixels[i])) {
 				return false
 			}
@@ -62,28 +64,21 @@ class puzzleGrid extends Component {
 		return true;
 	}
 
-	onClickPixel = (index, positionXY, position) => {
-		let emptyPosition = this.state.shuffledPixels[this.state.gridHeight*this.state.gridWidth-1];
-		let { x: emptyX, y: emptyY} = {
-			x: emptyPosition % this.state.gridWidth,
-			y: Math.floor(emptyPosition / this.state.gridWidth)
-		}
-		let {x, y} = {
-			x: position % this.state.gridWidth,
-			y: Math.floor(position / this.state.gridWidth)
-		}
-		// const {x, y} = positionXY;
-		// console.log(index, position);
-		// console.log(emptyPosition);
-		console.log(x,y);
-		console.log(emptyX, emptyY, "empty pixel");
-		console.log((x === emptyX || y === emptyY));
-		console.log((Math.abs(x-emptyX) === 1 || Math.abs(y-emptyY) === 1));
-		console.log((x === emptyX || y === emptyY) && (Math.abs(x-emptyX) === 1 || Math.abs(y-emptyY) === 1));
-		if ((x === emptyX || y === emptyY) && (Math.abs(x-emptyX) === 1 || Math.abs(y-emptyY) === 1)) {
+	swap = (fromIndex, toIndex) => {
+		console.log("fromIndex: ", fromIndex);
+		console.log("toIndex: ", toIndex);
+
+		if (fromIndex >= 0 && toIndex >= 0) {
 			let shuffledPixels = this.state.shuffledPixels;
-			shuffledPixels[this.state.gridHeight*this.state.gridWidth-1] = position;
-			shuffledPixels[this.state.shuffledPixels.indexOf(position)] = emptyPosition;
+			let fromPixID = shuffledPixels.indexOf(fromIndex);
+			let toPixelID = shuffledPixels.indexOf(toIndex);
+			
+			// console.log(fromPixID, toPixelID);
+	
+			let temp = shuffledPixels[fromPixID];
+			shuffledPixels[fromPixID] = shuffledPixels[toPixelID];
+			shuffledPixels[toPixelID] = temp
+	
 			// console.log(shuffledPixels);
 			this.setState({
 				shuffledPixels
@@ -94,22 +89,68 @@ class puzzleGrid extends Component {
 						this.props.history.push({
 							pathname: '/puzzle/end'
 						})
-					}, 750);
+					}, 500);
 					// alert("you win")
 				}
 			})
+	
+			this.render();
+		} else {
+			return;
 		}
+
+		
+		
 	}
+
+	// onClickPixel = (index, positionXY, position) => {
+	// 	let emptyPosition = this.state.shuffledPixels[this.state.gridHeight*this.state.gridWidth-1];
+	// 	let { x: emptyX, y: emptyY} = {
+	// 		x: emptyPosition % this.state.gridWidth,
+	// 		y: Math.floor(emptyPosition / this.state.gridWidth)
+	// 	}
+	// 	let {x, y} = {
+	// 		x: position % this.state.gridWidth,
+	// 		y: Math.floor(position / this.state.gridWidth)
+	// 	}
+	// 	// const {x, y} = positionXY;
+	// 	// console.log(index, position);
+	// 	// console.log(emptyPosition);
+	// 	console.log(x,y);
+	// 	console.log(emptyX, emptyY, "empty pixel");
+	// 	console.log((x === emptyX || y === emptyY));
+	// 	console.log((Math.abs(x-emptyX) === 1 || Math.abs(y-emptyY) === 1));
+	// 	console.log((x === emptyX || y === emptyY) && (Math.abs(x-emptyX) === 1 || Math.abs(y-emptyY) === 1));
+	// 	if ((x === emptyX || y === emptyY) && (Math.abs(x-emptyX) === 1 || Math.abs(y-emptyY) === 1)) {
+	// 		let shuffledPixels = this.state.shuffledPixels;
+	// 		shuffledPixels[this.state.gridHeight*this.state.gridWidth-1] = position;
+	// 		shuffledPixels[this.state.shuffledPixels.indexOf(position)] = emptyPosition;
+	// 		// console.log(shuffledPixels);
+	// 		this.setState({
+	// 			shuffledPixels
+	// 		}, () => {
+	// 			if (this.checkWin()) {
+	// 				console.log("you win");
+	// 				setTimeout(() => {
+	// 					this.props.history.push({
+	// 						pathname: '/puzzle/end'
+	// 					})
+	// 				}, 750);
+	// 				// alert("you win")
+	// 			}
+	// 		})
+	// 	}
+	// }
 
 	setPuzzleImage = (id) => {
 
-		this.props.startTimer();
+		this.props.startTimer(timer);
 		const images = [
-			'http://localhost:8080/1.png',
-			'http://localhost:8080/2.png',
-			'http://localhost:8080/3.png',
-			'http://localhost:8080/4.png',
-			'http://localhost:8080/5.png'
+			`${assetBaseUrl}/1.png`,
+			`${assetBaseUrl}/2.png`,
+			`${assetBaseUrl}/3.png`,
+			`${assetBaseUrl}/4.png`,
+			`${assetBaseUrl}/5.png`,
 		]
 
 		this.setState({
@@ -138,6 +179,7 @@ class puzzleGrid extends Component {
 						gridHeightPx={this.state.gridHeightPx}
 						image={this.state.image}
 						onClickPixel={this.onClickPixel}
+						swap={this.swap}
 					/>
 				)
 			}
@@ -146,13 +188,12 @@ class puzzleGrid extends Component {
 
 		const getImageThubms = () => {
 			const images = [
-				'http://localhost:8080/1.png',
-				'http://localhost:8080/2.png',
-				'http://localhost:8080/3.png',
-				'http://localhost:8080/4.png',
-				'http://localhost:8080/5.png'
-			]
-
+				`${assetBaseUrl}/1.png`,
+				`${assetBaseUrl}/2.png`,
+				`${assetBaseUrl}/3.png`,
+				`${assetBaseUrl}/4.png`,
+				`${assetBaseUrl}/5.png`,
+			]	
 			return images.map((img, i) => {
 				if (this.state.selectedImage !== i+1) {
 					return (

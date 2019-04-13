@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import logo from '../../assets/who-logo.png';
 
@@ -33,9 +33,10 @@ class leftPanel extends React.Component {
 					</p>
 				</div>
 	
-				{this.props.screen === "game" ? (
+				{this.props.screen === "game" || this.props.screen === "timeout" ? (
 					<div className="tickMark">
-						{/* <i class="fas fa-check"></i> */}
+						{/* HOME */}
+						<a href="/" className="tickMark3">HOME</a>
 					</div>
 				) : (
 					<div></div>

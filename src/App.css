@@ -1,18 +1,28 @@
+body {
+    overflow: hidden;
+}
+
 .App {
     /* padding: 30px; */
     overflow: hidden;
 }
 
 .puzzleGrid {
+    z-index: 100;
     /* margin: 30px auto; */
     position: relative
 }
 
 .gridPixel {
+    z-index: 999; 
     position: absolute;
     border: 1px solid #fff;
     transition: all 0.1s;
     cursor: pointer;
+}
+
+.gridPixel.active {
+    z-index: 1001;
 }
 
 .pixelIndex {
@@ -25,19 +35,23 @@
 
 .leftPanel {
     width: 33vw;
-    height: 100vh;
+    height: 91vh;
 }
 
 .logoImg {
     width: 50%;
-    margin: 10vh auto 5vh auto;
+    margin: 8vh auto 5vh auto;
+}
+
+.logoImgThanks {
+    width: 30%;
+    margin: 12vh auto 5vh auto;
 }
 
 .leftText {
     border-radius: 10px;
     padding: 6vh 3vw 3vh 3vw;
     font-size: 2vh;
-    font-weight: 500;
     height: 40vh;
     margin: 5vh auto 2vh auto;
     text-align: center;
@@ -49,10 +63,18 @@
 
 .tickMark {
     width: 15vw;
-    height: 7vh;
-    background-color: #008DC9;
-    border-radius: 35px;
+    height: 8vh;
+    background-color: #86C568;
+    border-radius: 10vh;
     margin: 0 auto;
+    text-align: center;
+}
+
+.tickMark3 {
+    color: white;
+    font-size: 3.5vh;
+    font-weight: 600;
+    line-height: 8vh;
 }
 
 .timerDiv {
@@ -65,7 +87,7 @@
 }
 
 .rightPanel {
-    margin: 20px;
+    margin: 5px;
     width: 66vw;
     background-color: #F3F2F3;
     border-radius: 10px;
@@ -103,39 +125,44 @@
     background-color: #008DC9;
     border-radius: 10px;
     position: relative;
-    padding: 0px;
-    height: 95vh;
+    height: 93vh;
 }
 
 .winMessage {
     color: white;
     text-align: center;
-    margin: 20vh auto 0 auto;
-    font-size: 5vw;
-    font-weight: 500;
+    margin: 9vh auto 0 auto;
+    font-size: 4vw;
     text-transform: uppercase;
 }
 
 .winTickMark {
-    width: 250px;
-    height: 80px;
+    color: white;
+    /* font-size: 10vh; */
+    text-align: center;
+    width: 18vw;
+    height: 11vh;
     background-color: #87C569;
-    border-radius: 40px;
-    margin: 10px auto;
+    border-radius: 10vh;
+    margin: 0 auto;
+}
+
+.tickMark2 {
+    font-size: 8vh;
+    /* line-height: 10px; */
 }
 
 .bottomButton {
     background-color: #007699;
     color: white;
     text-align: center;
-    font-size: 2.2em;
-    font-weight: 600;
+    font-size: 4vh;
     padding-top: 25px;
     width: 100%;
     margin: 0 auto;
     position: absolute;
     bottom: 0;
-    height: 110px;
+    height: 12vh;
     border-radius: 0 0 10px 10px;
     left: 0px;
 }
@@ -145,10 +172,10 @@
 }
 
 .winScore {
+    font-weight: 400;
     text-align: center;
-    font-size: 5em;
+    font-size: 6vh;
     color: #87C569;
-    font-weight: 700;
     margin-top: -15px;
 }
 
@@ -213,6 +240,10 @@
     margin: 6px auto;
 }
 
+.redFont {
+    color: #EB6358;
+}
+
 .red {
     background-color: #F4474C;
 }
@@ -242,22 +273,22 @@
 }
 
 .homeLogo {
-    width: 30%;
+    width: 25%;
     margin: 0 auto;
-    padding-top: 10vh;
+    padding-top: 7vh;
 }
 
 .homeText {
-    width: 60%;
+    width: 70%;
     text-align: center;
-    margin: 40px auto 10px auto;
+    margin: 20px auto 15px auto;
     color: #008DC9;
-    font-size: 2.5vh
+    font-size: 2.6vh
 }
 
 .clickableButton {
     text-align: center;
-    font-size: 2.3em;
+    font-size: 5vh;
     font-weight: 500;
     color: white;
 }
@@ -271,15 +302,15 @@
 }
 
 .homeIcon img {
-    max-height: 250px;
+    max-height: 350px;
 }
 
 .chooseGameText {
     text-align: center;
     color: #008DC9;
-    font-size: 3em;
-    margin: 0 auto;
-    font-weight: 800;
+    font-size: 5vh;
+    margin: 55px auto;
+    font-weight: 500;
 }
 
 .timeoutIamge {
@@ -292,11 +323,25 @@
     height: 40vh;
 }
 
+.bg2 {
+    position: relative;
+    height: 50vh;
+}
+
 .timer {
     position: absolute;
-    height: 21vh;
-    left: 40%;
+    height: 20vh;
+    left: 50%;
+    margin-left: -8vh;
     top: 10vh;
+}
+
+.thanksText {
+    position: absolute;
+    height: 18vh;
+    left: 50%;
+    margin-left: -35vh;
+    top: 15vh;
 }
 
 .timeOutMessage {
@@ -304,6 +349,21 @@
     text-align: center;
     margin: 15vh auto 0 auto;
     font-size: 5vw;
-    font-weight: 500;
     text-transform: uppercase;
+}
+
+.puzzleEnd {
+    position: absolute;
+    height: 21vh;
+    left: 50%;
+    margin-left: -10vh;
+    top: 10vh;
+}
+
+.quizEnd {
+    position: absolute;
+    height: 30vh;
+    left: 50%;
+    margin-left: -15vh;
+    top: 5vh;
 }

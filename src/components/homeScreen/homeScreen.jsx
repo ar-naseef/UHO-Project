@@ -17,7 +17,7 @@ export default class homeScreen extends Component {
 					</div>
 
 					<div className="homeText">
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.
+					A Health System with strong and quality Primary Health Care delivers better health outcomes, is cost-efficient and ensures care for all.  Primary Health Care is essential to achieve health-related Sustainable Development Goals (SDGs) and Universal Health Coverage.
 					</div>
 
 					<div className="chooseGameText">
