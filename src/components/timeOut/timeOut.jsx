@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import LeftPanel from '../leftPanel/leftPanel';
 import bg from '../../assets/background1.png';
@@ -21,7 +22,7 @@ export default function timeOut(props) {
 				</div>
 
 				<div className="bottomButton">
-					<a className="continueBtn" href="/thanks">CONTINUE</a>
+					<Link className="continueBtn" to="/thanks">CONTINUE</Link>
 				</div>
 			</div>
     </div>

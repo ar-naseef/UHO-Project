@@ -48,7 +48,7 @@ export default function lowScoreScreen(props) {
 				)}
 
 				<div className="bottomButton">
-					<a className="continueBtn" href="/thanks">CONTINUE</a>
+					<a className="continueBtn" href="/#/thanks">CONTINUE</a>
 				</div>
 			</div>
     </div>

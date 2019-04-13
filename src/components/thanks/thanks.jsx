@@ -9,9 +9,7 @@ class thanks extends React.Component {
 
 	componentDidMount() {
 		setTimeout(() => {
-			this.props.history.push({
-				pathname: "/"
-			})
+			document.location.href = "/"
 		}, 3500);
 	}
 

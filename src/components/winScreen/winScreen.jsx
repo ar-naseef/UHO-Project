@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import LeftPanel from '../leftPanel/leftPanel';
 
@@ -48,7 +49,7 @@ export default function winScreen(props) {
 				)}
 
 				<div className="bottomButton">
-					<a className="continueBtn" href="/thanks">CONTINUE</a>
+					<Link className="continueBtn" to="/thanks">CONTINUE</Link>
 				</div>
 			</div>
     </div>

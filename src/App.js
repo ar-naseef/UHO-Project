@@ -1,6 +1,6 @@
 // imports
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, HashRouter } from 'react-router-dom';
 
 // styles
 import './App.css';
@@ -51,7 +51,7 @@ class App extends Component {
   render() {
 
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="App">
           <Route path="/" component={HomeScreen} exact />
           <Route path="/puzzle" exact render={() => <PuzzleParent startTimer={this.startTimer} timerSec={this.state.timerSec} />} />
@@ -61,7 +61,7 @@ class App extends Component {
           <Route path="/timeout" exact render={() => <TimeOut message="Times up!" />} />
           <Route path="/thanks" render={() => <Thanks />} exact />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
