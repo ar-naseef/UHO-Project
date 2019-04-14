@@ -83,6 +83,7 @@ export default class puzzlePixel extends Component {
         // console.log("position", Math.floor(left/pixelWidthPX), Math.floor(top/pixelHeightPX));
         // console.log("initial-Pos", positionInsidePixelX, positionInsidePixelY);
       }}
+      
       onTouchEnd={(e) => {
         // console.log(e.target)
         let index = parseInt(e.target.getAttribute("position"));
@@ -94,7 +95,7 @@ export default class puzzlePixel extends Component {
         let dropedPositionX = Math.floor(((parseFloat(e.target.style.left) + (pixelWidthPX/2)))/pixelWidthPX);
         let dropedPositionY = Math.floor(((parseFloat(e.target.style.top)) + (pixelHeightPX/2))/pixelHeightPX);
 
-        console.log("dropedAt: ", dropedPositionX, dropedPositionY);
+        // console.log("dropedAt: ", dropedPositionX, dropedPositionY);
         // console.log(index);
 
         if (index === ((dropedPositionY*this.props.gridWidth) + dropedPositionX)) {

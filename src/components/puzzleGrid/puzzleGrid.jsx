@@ -49,7 +49,7 @@ class puzzleGrid extends Component {
 				const j = Math.floor(Math.random() * (i + 1));
 				[a[i], a[j]] = [a[j], a[i]];
 		}
-		console.log(a);
+		// console.log(a);
 		return a;
 	}
 
@@ -65,8 +65,8 @@ class puzzleGrid extends Component {
 	}
 
 	swap = (fromIndex, toIndex) => {
-		console.log("fromIndex: ", fromIndex);
-		console.log("toIndex: ", toIndex);
+		// console.log("fromIndex: ", fromIndex);
+		// console.log("toIndex: ", toIndex);
 
 		if (fromIndex >= 0 && toIndex >= 0) {
 			let shuffledPixels = this.state.shuffledPixels;

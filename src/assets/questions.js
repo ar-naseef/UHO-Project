@@ -698,8 +698,8 @@ while (i<10) {
     }
 }
 
-console.log(indexes);
-console.log(questions.length);
+// console.log(indexes);
+// console.log(questions.length);
 
 module.exports = [
     questions[indexes[0]],

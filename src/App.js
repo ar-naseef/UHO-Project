@@ -1,6 +1,7 @@
 // imports
 import React, { Component } from 'react';
 import { Route, BrowserRouter, HashRouter } from 'react-router-dom';
+import iNoBounce from 'inobounce';
 
 // styles
 import './App.css';
@@ -23,6 +24,8 @@ class App extends Component {
       timerSec: 90
     }
 
+    // console.log(iNoBounce);
+    iNoBounce.enable();
     this.timeOut = null
   }
 
